@@ -1,0 +1,8 @@
+coverage
+node_modules
+public
+cypress
+dist
+turbo.json
+.turbo
+.pnpm-store

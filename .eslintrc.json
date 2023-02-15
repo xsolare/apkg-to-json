@@ -1,0 +1,63 @@
+{
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier"],
+  "plugins": ["@typescript-eslint", "import"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": ["./tsconfig.json"],
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "env": {
+    "es2021": true
+  },
+  "rules": {
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "type",
+          "builtin",
+          "external",
+          "internal",
+          "unknown",
+          "parent",
+          "sibling",
+          "index",
+          "object"
+        ],
+        "alphabetize": { "order": "asc", "caseInsensitive": true }
+      }
+    ],
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "interface",
+        "format": ["PascalCase"],
+        "custom": {
+          "regex": "^I[A-Z]",
+          "match": true
+        }
+      }
+    ],
+    "@typescript-eslint/consistent-type-imports": [
+      "error",
+      {
+        "prefer": "type-imports",
+        "disallowTypeAnnotations": false
+      }
+    ]
+  },
+  "overrides": [
+    //* Configuration for Jest test files
+    {
+      "files": ["**/*.test.ts"],
+      "plugins": ["jest", "jest-formatting", "testing-library"],
+      "extends": ["plugin:jest/recommended", "plugin:jest-formatting/recommended"],
+      "rules": {
+        "@typescript-eslint/no-unsafe-call": "off",
+        "testing-library/no-container": "off",
+        "testing-library/no-node-access": "off"
+      }
+    }
+  ]
+}
